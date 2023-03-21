@@ -1,5 +1,3 @@
-
-
 <style>
   .divider:after,
   .divider:before {
@@ -29,7 +27,7 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <!-- Email input -->
           <div class="form-outline mb-4">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", id:"form3Example3", class:"form-control form-control-lg",
+              <%= f.email_field :email, autofocus: true, id:"form3Example3", class:"form-control form-control-lg",
               placeholder:"Enter a valid email address" %>
               <%# <%= f.label :email,  class:"form-label", for:"form3Example3" %>
             <%# <input type="email" id="form3Example3" class="form-control form-control-lg"
@@ -92,7 +90,7 @@
     <!-- Copyright -->
 
     <!-- Right -->
-    <div>
+    <%# <div>
       <a href="#!" class="text-white me-4">
         <i class="fab fa-facebook-f"></i>
       </a>
@@ -105,7 +103,7 @@
       <a href="#!" class="text-white">
         <i class="fab fa-linkedin-in"></i>
       </a>
-    </div>
+    </div> %>
     <!-- Right -->
   </div>
 </section>
