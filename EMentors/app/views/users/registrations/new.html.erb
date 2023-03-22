@@ -50,7 +50,11 @@
                   <%# <input type="email" id="form3Example3" class="form-control" />
                   <label class="form-label" for="form3Example3">Email address</label> %>
                 </div>
-                
+                <div class="form-outline mb-4">
+                    <%= f.select :role, collection: User.roles.keys.to_a %>
+                  <%# <input type="email" id="form3Example3" class="form-control" />
+                  <label class="form-label" for="form3Example3">Email address</label> %>
+                </div>
                 <!-- Password input -->
                 <div class="form-outline mb-4">
                   <%= f.label :password, class:"form-label", for:"form3Example4" %>
