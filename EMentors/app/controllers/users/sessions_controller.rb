@@ -5,11 +5,13 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   # def new
+  #   byebug
   #   super
   # end
 
-  # POST /resource/sign_in
+  # # POST /resource/sign_in
   # def create
+  #   byebug
   #   super
   # end
 

@@ -1,0 +1,26 @@
+<%# <h1>Create a new Courses</h1> %>
+<%= form_with model: course do |form|%>
+    <div>
+        <%= form.label :course_name %> <br>
+        <%= form.text_field :course_name %> <br>
+    </div>
+
+    <div>
+        <%= form.label :course_description %> <br>
+        <%= form.text_field :course_description %> <br>
+    </div>
+
+    <div>
+        <%= form.label :course_duration %> <br>
+        <%= form.text_field :course_duration %> <br>
+    </div>
+
+    <div>
+        <%= form.label :course_price %> <br>
+        <%= form.text_field :course_price %> <br>
+    </div>
+
+    <div>
+        <%= form.submit %> <br>
+    </div>
+<% end %>
