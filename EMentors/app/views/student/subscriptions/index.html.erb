@@ -1,0 +1,11 @@
+<h1>My courses list:</h1>
+<% @courses.each do |course| %>
+    <div>
+        <strong>Course Name: </strong><%= course.course_name %><br>
+        <strong>Course Description: </strong><%= course.course_description %><br>
+        <strong>Course Duration: </strong><%= course.course_duration %> <br>
+        <strong>Course Price: </strong><%= course.course_price %><br>
+    </div>
+    <br>
+    <br>
+<% end %>

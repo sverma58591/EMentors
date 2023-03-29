@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   end
 
   scope module: :student do
-    resources :dashboard    
+    resources :dashboard 
+    resources :purchases
+    resources :subscriptions
   end
 end
