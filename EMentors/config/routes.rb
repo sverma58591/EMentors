@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   scope module: :teacher do
     resources :courses    
+    resources :subscribers
   end
 
   scope module: :student do

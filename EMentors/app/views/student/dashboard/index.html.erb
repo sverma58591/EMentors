@@ -1,8 +1,8 @@
 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-<%= link_to 'My Courses', subscriptions_path %>
 <div class="d-flex align-items-center justify-content-center">
     <h1>Hello Student, Welcome to the EMentors</h1>
 </div>
+<%= link_to 'My Courses', subscriptions_path %>
 <% @courses.each do |course| %>
     <p>
         <strong>Course Name: </strong>

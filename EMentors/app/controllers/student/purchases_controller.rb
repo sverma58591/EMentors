@@ -24,4 +24,3 @@ module Student
         end
     end
 end
-# render notice: "Course has already purchased!" 
