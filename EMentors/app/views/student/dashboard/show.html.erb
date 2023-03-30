@@ -8,5 +8,6 @@
     <p><strong>Course Duration: </strong><%= @course.course_duration %></p>
     <p><strong>Course Price: </strong><%= @course.course_price %></p>
 </div>
-<%= button_to 'Buy Course', purchases_path(course_id: @course.id), method: :post %>
+
+
 <%= link_to 'Back', dashboard_index_path %> 

@@ -8,7 +8,8 @@
         <strong>Course Name: </strong>
         <%=course.course_name%><br>
         <strong>Course Description: </strong>
-        <%=course.course_description%><br>
+        <%=course.course_description%>
+        <%= button_to 'Buy Course', purchases_path(course_id: course.id), method: :post %>
         <%= link_to 'View Details', dashboard_path(course) %>
     </p>
 <% end %>

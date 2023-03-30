@@ -12,8 +12,6 @@ module Teacher
       def show
         # byebug
         @course = current_user.courses.find(params[:id])
-        @users_id = @course.purchases.pluck(:user_id)
-        @users = User.where(id: @users_id)
       end
     
       def create

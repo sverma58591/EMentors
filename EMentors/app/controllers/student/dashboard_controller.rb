@@ -1,7 +1,7 @@
 module Student
     class DashboardController < BaseController
         def index
-            @courses = Course.all
+            @courses = Course.where.not(id: current_user.purchases.pluck(:course_id))
         end
 
         def show

@@ -9,15 +9,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     confirmations: 'users/confirmations'
   }
-
-  # resources :users do 
-  #   collection do
-  #     resource :courses
-  #   end
-  # end
-
+  
   scope module: :teacher do
-    resources :courses    
+    resources :courses do
+      resources :topics
+    end
     resources :subscribers
   end
 
