@@ -11,7 +11,7 @@ module Student
                 redirect_to request.env["HTTP_REFERER"], alert: "Error adding course"
             end
         end
-
+        
         private
         def purchase_params
             params.permit(:course_id)
@@ -24,3 +24,4 @@ module Student
         end
     end
 end
+# render notice: "Course has already purchased!" 
