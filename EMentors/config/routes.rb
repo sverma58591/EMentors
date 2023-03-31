@@ -4,23 +4,25 @@ Rails.application.routes.draw do
   get 'main/index'
   root 'main#index'
   get 'students/dashboard/index'
+  get 'thanks', to: 'charges#thanks', as: 'thanks'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     confirmations: 'users/confirmations'
   }
-
-  # resources :users do 
-  #   collection do
-  #     resource :courses
-  #   end
-  # end
-
+  
+  # resources :payments
+  resources :charges, only: [:new, :create]
   scope module: :teacher do
-    resources :courses    
+    resources :courses do
+      resources :topics
+    end
+    resources :subscribers
   end
 
   scope module: :student do
-    resources :dashboard    
+    resources :dashboard 
+    resources :purchases
+    resources :subscriptions
   end
 end

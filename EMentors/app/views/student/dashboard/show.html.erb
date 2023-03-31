@@ -7,5 +7,9 @@
     <p><strong>Course Description: </strong><%= @course.course_description %></p>
     <p><strong>Course Duration: </strong><%= @course.course_duration %></p>
     <p><strong>Course Price: </strong><%= @course.course_price %></p>
+    <%= button_to 'Buy Course', purchases_path(course_id: @course.id), method: :post %>
+    <%= link_to 'Buy Course', charges_path(id: @course), method: :post, class: "btn btn-outline-secondary" %>
 </div>
+
+
 <%= link_to 'Back', dashboard_index_path %> 

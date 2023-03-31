@@ -1,14 +1,41 @@
+<%= link_to 'View Subscribers', subscribers_path(course_id: @course) %>
 <div class="d-flex align-items-center justify-content-center">
     <h1>Hello Mentor</h1>
 </div>
 
 <div>
-    <p><strong>Course Name: </strong><%= @course.course_name %></p>
-    <p><strong>Course Description: </strong><%= @course.course_description %></p>
-    <p><strong>Course Duration: </strong><%= @course.course_duration %></p>
-    <p><strong>Course Price: </strong><%= @course.course_price %></p>
+    <p><strong>Course Name: </strong><%= @course.course_name %><br>
+    <strong>Course Description: </strong><%= @course.course_description %><br>
+    <strong>Course Duration: </strong><%= @course.course_duration %><br>
+    <strong>Course Price: </strong><%= @course.course_price %></p>
 </div>
 
+<%# <div>
+    
+</div> %>
+<%= link_to 'Create Topic', new_course_topic_path(@course)%><br>
+<table>
+    <thead>
+        <tr>
+            <th> Topic Name </th>
+            <th> Topic Description </th>
+            <th colspan= "2">Edit/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @course.topics.each do |topic| %>
+            <tr>
+                <td><%= topic.topic_name %> </td>
+                <td><%= topic.topic_description %> </td>
+                <td><%= link_to 'Edit', edit_course_topic_path(course_id: @course, id: topic)%> 
+                <td><%= link_to 'Delete', course_topic_path(course_id: @course, id: topic), method: :delete, data: { confirm: "Are you sure?" } %>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<br>
+<br>
+<br>
 <%= link_to 'Back', courses_path %> | 
 <%= link_to 'Edit', edit_course_path(@course.id) %> | 
 <%= link_to 'Delete', course_path(@course.id), method: :delete, data: { confirm: "Are you sure?" } %>
