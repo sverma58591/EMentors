@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :courses, dependent: :destroy
   has_many :purchases, dependent: :destroy
+  has_many :payments, through: :courses
   validates :first_name, :role, presence: true
   # validates :role, inclusion: { in: [0, 1],
   #   message: "%{value} is not a valid size" }

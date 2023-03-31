@@ -2,6 +2,7 @@ class Course < ApplicationRecord
   belongs_to :user
   has_many :purchases, dependent: :destroy
   has_many :topics, dependent: :destroy
+  has_many :payments, through: :users
   # validates :users
   # validates :course_name, presence: true, uniqueness: true
   # validates :course_duration, :course_price, presence: true
