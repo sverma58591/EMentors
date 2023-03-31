@@ -1,6 +1,6 @@
 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
 <div class="d-flex align-items-center justify-content-center">
-    <h1>Hello Student, Welcome to the EMentors</h1>
+    <h1>Hello <%= current_user.first_name %>, Welcome to the EMentors</h1>
 </div>
 <%= link_to 'My Courses', subscriptions_path %>
 <% @courses.each do |course| %>
@@ -8,7 +8,8 @@
         <strong>Course Name: </strong>
         <%=course.course_name%><br>
         <strong>Course Description: </strong>
-        <%=course.course_description%><br>
+        <%=course.course_description%>
+        <%= button_to 'Buy Course', purchases_path(course_id: course.id), method: :post %>
         <%= link_to 'View Details', dashboard_path(course) %>
     </p>
 <% end %>
