@@ -1,0 +1,19 @@
+    <%= @course.course_name %>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th> Topic Name </th>
+                    <th> Topic Description </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @course.topics.each do |topic| %>
+                    <tr>
+                        <td><%= topic.topic_name %> </td>
+                        <td><%= topic.topic_description %> </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
