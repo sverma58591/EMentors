@@ -11,7 +11,7 @@ class CheckoutController < ApplicationController
             } ],
             mode: 'payment',
             success_url: root_url,
-            cancel_url: root_url,
+            cancel_url: home_index_url,
           })
         respond_to do |format|
             format.js
