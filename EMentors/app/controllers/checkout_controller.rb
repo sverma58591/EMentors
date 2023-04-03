@@ -1,6 +1,8 @@
 class CheckoutController < ApplicationController
     def create
+        # byebug
         course = Course.find(params[:id])
+        # byebug
         @session = Stripe::Checkout::Session.create({
             payment_method_types: ['card'],
             line_items: [{
@@ -14,5 +16,8 @@ class CheckoutController < ApplicationController
         respond_to do |format|
             format.js
         end
+    end
+
+    def thanks
     end
 end

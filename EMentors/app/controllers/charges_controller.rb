@@ -22,8 +22,7 @@
 #     redirect_to new_charge_path
 #   end
 
-#   def thanks
-#   end
+  
 
   
 #   private
