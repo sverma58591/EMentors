@@ -28,3 +28,8 @@
 #         )
 #     end
 # end
+
+# @courses = Course.all
+# @courses.each do |course|
+#     course.course_price = 200
+# end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post "/checkout/create", to: "checkout#create"
   get 'home/index'
   get 'main/index'
   root 'main#index'
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   }
   
   # resources :payments
-  resources :charges, only: [:new, :create]
+  # resources :charges, only: [:new, :create]
   scope module: :teacher do
     resources :courses do
       resources :topics
