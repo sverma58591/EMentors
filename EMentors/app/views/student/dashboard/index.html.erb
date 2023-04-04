@@ -8,9 +8,9 @@
         <strong>Course Name: </strong>
         <%=course.course_name%><br>
         <strong>Course Description: </strong>
-        <%=course.course_description%>
+        <%=course.course_description%><br>
         <%# <%= button_to 'Buy Course', purchases_path(course_id: course.id), method: :post %> 
-        <td><%= button_to "Buy Now!", checkout_create_path, params: {id: course.id}, remote: true %></td>
+        <%# <td><%= button_to "Buy Now!", checkout_create_path, params: {id: course.id}, remote: true %>
         <%= link_to 'View Details', dashboard_path(course) %>
     </p>
 <% end %>
