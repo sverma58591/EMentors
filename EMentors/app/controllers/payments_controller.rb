@@ -1,44 +1,32 @@
-# class PaymentsController < ApplicationController
-#     before_action :authenticate_user!
-#     def new
-#       @course = Course.find(params[:course_id])
-#       @payment = current_user.payments.new(payment_params)
-#     end
+class PaymentsController < ApplicationController
+    def payment_successful
+        @course = Course.find(params[:course_id])
+        @payment = @course.payments.new 
+        @payment.payment_date = Date.today()
+        @payment.user_id = current_user.id
+        @payment.save
+        @payment.complete!
+        if @payment.status == 'success'
+            @purchase = current_user.purchases.new(purchase_params)
+            @purchase.save
+        end
+    end
 
-#     def create
-#       @course = Course.find(params[:course_id])
-#       @payment = current_user.payments.build(payment_params)
-  
-#       if @payment.valid?
-#         customer = Stripe::Customer.create(
-#           email: current_user.email,
-#           source: params[:stripeToken]
-#         )
-  
-#         charge = Stripe::PaymentIntent.create(
-#           customer: customer.id,
-#           amount: @course.course_price.to_f ,
-#           description: @course.course_name,
-#           currency: 'usd'
-#         )
-        
-#         @payment.user_id = current_user.id
-#         @payment.course_id = @course.id
-#         @payment.stripe_charge_id = charge.id
-#         @payment.save
-  
-#         @course.purchases.create(user_id: current_user.id)
-#         redirect_to course_path(@course), notice: "Payment was successfully made."
-#       else
-#         redirect_to course_path(@course), alert: "Payment could not be processed."
-#       end
-#     rescue Stripe::CardError => e
-#       flash[:error] = e.message
-#       redirect_to course_path(@course), alert: "Payment could not be processed."
-#     end
-  
-#     private
-#     def payment_params
-#       params.require(:payment).permit(:amount, :stripeToken, :course_id)
-#     end
-#   end
+    def payment_cancel
+        @course = Course.find(params[:course_id])
+        @payment = @course.payments.new 
+        @payment.payment_date = Date.today()
+        @payment.user_id = current_user.id
+        @payment.save
+        @payment.cancel!
+    end
+
+    private
+    def payment_params
+        params.require(:payment).permit(:user_id, :course_id, :payment_date)
+    end
+
+    def purchase_params
+        params.permit(:course_id)
+    end
+end

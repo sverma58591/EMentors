@@ -10,4 +10,10 @@ class Purchase < ApplicationRecord
       errors.add(:user_id, "Must be a student to produce a course")
     end
   end
+
+  # def check_purchase?
+  #   if user.purchases.where(course_id: params[:course_id]).present?
+  #       errors.add(:user_id, "Course already purchased!")
+  #   end
+  # end
 end
