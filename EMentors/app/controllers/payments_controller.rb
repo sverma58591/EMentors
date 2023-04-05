@@ -4,11 +4,15 @@ class PaymentsController < ApplicationController
         @payment = @course.payments.new 
         @payment.payment_date = Date.today()
         @payment.user_id = current_user.id
-        @payment.save
-        @payment.complete!
-        if @payment.status == 'success'
-            @purchase = current_user.purchases.new(purchase_params)
-            @purchase.save
+        if @payment.save
+            @payment.complete!
+            if @payment.status == 'success'
+                @purchase = current_user.purchases.new(purchase_params)
+                if @purchase.save
+                    PaymentNotificationMailer.create_notification_for_student(@purchase).deliver_now
+                    PaymentNotificationMailer.create_notification_for_teacher(@purchase).deliver_now
+                end
+            end
         end
     end
 
@@ -17,8 +21,9 @@ class PaymentsController < ApplicationController
         @payment = @course.payments.new 
         @payment.payment_date = Date.today()
         @payment.user_id = current_user.id
-        @payment.save
-        @payment.cancel!
+        if @payment.save
+            @payment.cancel!
+        end
     end
 
     private
