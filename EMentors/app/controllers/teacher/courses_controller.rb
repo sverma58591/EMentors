@@ -1,18 +1,16 @@
 module Teacher 
   class CoursesController < BaseController
-      before_action :check_subscribers!, only: [:destroy]
+      before_action :check_subscribed!, only: [:destroy]
+      before_action :set_course, only: %i[show edit update destroy]
       def index
-        @courses = current_user.courses.all
+        @courses = current_user.courses
       end
       
       def new
         @course = current_user.courses.new
       end
     
-      def show
-        # byebug
-        @course = current_user.courses.find(params[:id])
-      end
+      def show;end
     
       def create
         @course = current_user.courses.new(course_params)
@@ -24,12 +22,9 @@ module Teacher
         end
       end
     
-      def edit
-        @course = current_user.courses.find(params[:id])
-      end
+      def edit;end
     
       def update
-        @course = current_user.courses.find(params[:id])
     
         if @course.update(course_params)
           redirect_to @course
@@ -39,9 +34,7 @@ module Teacher
       end
     
       def destroy
-        @course = current_user.courses.find(params[:id])
         @course.destroy
-        
         redirect_to courses_path
       end
       private
@@ -49,10 +42,14 @@ module Teacher
         params.require(:course).permit(:course_name, :course_description, :course_duration, :course_price)
       end
 
-      def check_subscribers!
+      def check_subscribed!
         if current_user.courses.find(params[:id]).purchases.count > 0
           return redirect_to request.env["HTTP_REFERER"], notice: "Cannot perform action!"
         end
+      end
+
+      def set_course
+        @course = current_user.courses.find(params[:id])
       end
     end
   end

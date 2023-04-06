@@ -3,14 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :courses, dependent: :destroy
   has_many :purchases, dependent: :destroy
-  has_many :payments, through: :courses
+  has_many :payments
   validates :first_name, :role, presence: true
-  # validates :role, inclusion: { in: [0, 1],
-  #   message: "%{value} is not a valid size" }
   enum role: {student: 0, teacher: 1}
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+ # scope :teacher, -> { where(role: 1) }
   def is_student?
     role === 'student'
   end
