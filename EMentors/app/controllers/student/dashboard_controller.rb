@@ -5,8 +5,7 @@ module Student
             @courses = Course.where.not(id: current_user.purchases.pluck(:course_id))
         end
 
-        def show
-        end
+        def show;end
         
         private
         def course_id_valid?

@@ -1,9 +1,12 @@
 class Topic < ApplicationRecord
   belongs_to :course
+  before_destroy :ensure_subscribed?
+
   private
-  def ensure_teacher?
-    unless user.teacher?
-      errors.add(:user_id, "Must be a teacher to create a topics")
+  def ensure_subscribed?
+    if course.purchases.count > 0
+      errors.add(:course_id, "Course is purchased, can't perform the action!")
+      throw(:abort)
     end
   end
 end
