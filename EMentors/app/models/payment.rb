@@ -3,9 +3,6 @@ class Payment < ApplicationRecord
   
   belongs_to :user
   belongs_to :course
-  
-  validates :status, inclusion: { in: %w[pending cancelled success failed] }
-  
   aasm column: :status, whiny_transitions: false do
     state :pending, initial: true
     state :cancelled, :success, :failed
