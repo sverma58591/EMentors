@@ -1,11 +1,11 @@
-<%= form_with model: [ @course, @course.topics.build ] do |form| %>
+<%= form_with model: [@course, @topic] do |form| %>
   <p>
     <%= form.label :topic_name %><br>
     <%= form.text_field :topic_name %>
   </p>
   <p>
     <%= form.label :topic_description %><br>
-    <%= form.text_area :topic_description %>
+    <%= form.text_field :topic_description %>
   </p>
   <p>
     <%= form.submit %>

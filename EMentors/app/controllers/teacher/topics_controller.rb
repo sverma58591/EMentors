@@ -15,7 +15,7 @@ module Teacher
         end
 
         def edit
-            @topic = @course.topics.update(topics_params)
+            # byebug
             @topic = @course.topics.find(params[:id])
         end
 
