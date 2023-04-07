@@ -10,9 +10,7 @@
     <strong>Course Price: </strong><%= @course.course_price %></p>
 </div>
 
-<%# <div>
-    
-</div> %>
+
 <%= link_to 'Create Topic', new_course_topic_path(@course)%><br>
 <table>
     <thead>
@@ -27,6 +25,9 @@
             <tr>
                 <td><%= topic.topic_name %> </td>
                 <td><%= topic.topic_description %> </td>
+                <% if topic.post_video.present? %>
+                    <td><%= video_tag url_for(topic.post_video), controls: true %> </td>
+                <% end %>
                 <td><%= link_to 'Edit', edit_course_topic_path(course_id: @course, id: topic)%> 
                 <td><%= link_to 'Delete', course_topic_path(course_id: @course, id: topic), method: :delete, data: { confirm: "Are you sure?" } %>
             </tr>
