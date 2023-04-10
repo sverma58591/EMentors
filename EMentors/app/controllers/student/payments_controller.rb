@@ -7,8 +7,9 @@ module Student
                 if @payment.status == 'success'
                     @purchase = current_user.purchases.new(purchase_params)
                     if @purchase.save
-                        PaymentNotificationMailer.create_notification_for_student(@purchase).deliver_now
-                        PaymentNotificationMailer.create_notification_for_teacher(@purchase).deliver_now
+                        GenerateMailJob.perform_later(@purchase)
+                        # PaymentNotificationMailer.create_notification_for_student(@purchase).deliver_now
+                        # PaymentNotificationMailer.create_notification_for_teacher(@purchase).deliver_now
                     end
                 end
             end
