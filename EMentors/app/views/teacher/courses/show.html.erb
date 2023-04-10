@@ -29,7 +29,7 @@
                     <td><%= video_tag url_for(topic.post_video), controls: true %> </td>
                 <% end %>
                 <td><%= link_to 'Edit', edit_course_topic_path(course_id: @course, id: topic)%> 
-                <td><%= link_to 'Delete', course_topic_path(course_id: @course, id: topic), method: :delete, data: { confirm: "Are you sure?" } %>
+                <td><%= link_to 'Delete', course_topic_path(course_id: @course, id: topic), method: :delete, data: { confirm: "Are you sure?" }, remote: true, :class => 'delete_topic' %>
             </tr>
         <% end %>
     </tbody>
