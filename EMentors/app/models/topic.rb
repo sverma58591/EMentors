@@ -1,4 +1,5 @@
 class Topic < ApplicationRecord
+  include Discard::Model
   belongs_to :course
   before_destroy :ensure_subscribed?
   has_one_attached :post_video

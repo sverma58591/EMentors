@@ -30,7 +30,7 @@ module Teacher
 
         def destroy
             @topic = @course.topics.find(params[:id])
-            if @topic.destroy
+            if @topic.discard
 
             respond_to do |format|
                 format.html { redirect_to course_path(@course) }

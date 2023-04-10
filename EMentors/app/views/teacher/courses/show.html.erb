@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        <% @course.topics.each do |topic| %>
+        <% @course.topics.kept.each do |topic| %>
             <tr>
                 <td><%= topic.topic_name %> </td>
                 <td><%= topic.topic_description %> </td>

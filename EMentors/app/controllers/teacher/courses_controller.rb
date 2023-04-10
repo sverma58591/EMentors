@@ -3,7 +3,8 @@ module Teacher
       before_action :check_subscribed!, only: [:destroy]
       before_action :set_course, only: %i[show edit update destroy]
       def index
-        @courses = current_user.courses
+        # byebug
+        @courses = current_user.courses.kept
       end
       
       def new
@@ -33,9 +34,10 @@ module Teacher
       end
     
       def destroy
-        @course.destroy
+        @course.discard
         redirect_to courses_path
       end
+
       private
       def course_params
         params.require(:course).permit(:course_name, :course_description, :course_duration, :course_price)
