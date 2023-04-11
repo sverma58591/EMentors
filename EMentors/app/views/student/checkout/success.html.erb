@@ -2,7 +2,7 @@
     <h1>Payment Successful </h1>
 </div>
 <div class="d-flex align-items-center justify-content-center">
-    <h2>Thanks, you paid <strong>Rs.<%= @course_price %></strong>! for "<%= @course_name %>" course</h2>
+    <h2>Thanks, you paid <strong>Rs.<%= @course.course_price %></strong>! for "<%= @course.course_name %>" course</h2>
 </div>
 <div class="d-flex align-items-center justify-content-center">
     <p>Please click on <%= link_to 'My courses', subscriptions_path %> to view course</p>
