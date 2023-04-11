@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  include Discard::Model
+
   before_validation :ensure_teacher?
   belongs_to :user
   has_many :purchases, dependent: :destroy

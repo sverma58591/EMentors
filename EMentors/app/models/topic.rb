@@ -1,8 +1,9 @@
 class Topic < ApplicationRecord
+  include Discard::Model
   belongs_to :course
   before_destroy :ensure_subscribed?
   has_one_attached :post_video
-  validates :post_video,  presence: true
+  # validates :post_video,  presence: true
   private
   def ensure_subscribed?
     if course.purchases.count > 0

@@ -9,6 +9,4 @@
     <p><strong>Course Price: </strong><%= @course.course_price %></p>
     <td><%= button_to "Buy Now!", checkout_create_path, params: {id: @course.id}, remote: true %></td>
 </div>
-
-
 <%= link_to 'Back', dashboard_index_path %> 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_07_092233) do
+ActiveRecord::Schema.define(version: 2023_04_10_110536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2023_04_07_092233) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "course_price"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_courses_on_discarded_at"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
@@ -79,7 +81,9 @@ ActiveRecord::Schema.define(version: 2023_04_07_092233) do
     t.bigint "course_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "discarded_at"
     t.index ["course_id"], name: "index_topics_on_course_id"
+    t.index ["discarded_at"], name: "index_topics_on_discarded_at"
   end
 
   create_table "users", force: :cascade do |t|

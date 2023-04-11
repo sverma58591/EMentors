@@ -10,7 +10,7 @@ module Student
     
         begin
           event = Stripe::Webhook.construct_event(
-            payload, sig_header, Rails.configuration.stripe[:webhook_key]
+            payload, sig_header, Rails.application.credentials.stripe[:WEBHOOK_KEY]
           )
         rescue JSON::ParserError => e
           status 400
@@ -26,8 +26,6 @@ module Student
         case event.type
         when 'checkout.session.completed'
           session = event.data.object
-          # @product = Product.find_by(price: session.amount_total)
-          # @product.increment!(:sales_count)
         end
     
         render json: { message: 'success' }
