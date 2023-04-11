@@ -30,6 +30,7 @@ module Student
                 @purchase = @course.purchases.new
                 @purchase.user_id = @user.id
                 @purchase.save
+                GenerateMailJob.perform_later(@purchase)
             else
                 #Refund process
             end
