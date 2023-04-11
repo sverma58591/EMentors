@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :purchases
     resources :subscriptions
     post "/checkout/create", to: "checkout#create"
+    get '/checkout/success', to: "checkout#success"
+    get '/checkout/cancel', to: "checkout#cancel"
     get 'payment/payment_successful', to: "payments#payment_successful"
     get 'payment/payment_cancel', to: "payments#payment_cancel"
   end

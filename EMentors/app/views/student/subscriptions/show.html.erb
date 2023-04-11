@@ -13,7 +13,7 @@
                         <td><%= topic.topic_name %> </td>
                         <td><%= topic.topic_description %> </td>
                         <% if topic.post_video.present? %>
-                            <td><%= video_tag url_for(topic.post_video), controls: true %></td>
+                            <td><%= video_tag url_for(topic.post_video), controls:true, controlsList: "nodownload" %></td>
                         <% end %>
                     </tr>
                 <% end %>

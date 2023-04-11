@@ -30,12 +30,19 @@ module Teacher
 
         def destroy
             @topic = @course.topics.find(params[:id])
-            if @topic.destroy
-                redirect_to course_path(@course)
-            else 
-                return redirect_to request.env["HTTP_REFERER"], notice: "Cannot perform action!" 
+            if @topic.discard
+                respond_to do |format|
+                    format.html { redirect_to course_path(@course) }
+                    format.json { render :json => {:message => "success", :body => @topic} }
+                end
+            else
+                respond_to do |format|
+                    format.html { redirect_to request.env["HTTP_REFERER"], notice: "Cannot perform action!"  }
+                    format.json { render :json => {:message => "false"} }
+                end 
             end
         end
+        
         private
         def topics_params
             params.require(:topic).permit(:topic_name, :topic_description, :post_video)

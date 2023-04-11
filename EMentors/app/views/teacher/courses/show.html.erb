@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        <% @course.topics.each do |topic| %>
+        <% @course.topics.kept.each do |topic| %>
             <tr>
                 <td><%= topic.topic_name %> </td>
                 <td><%= topic.topic_description %> </td>
@@ -29,7 +29,8 @@
                     <td><%= video_tag url_for(topic.post_video), controls: true %> </td>
                 <% end %>
                 <td><%= link_to 'Edit', edit_course_topic_path(course_id: @course, id: topic)%> 
-                <td><%= link_to 'Delete', course_topic_path(course_id: @course, id: topic), method: :delete, data: { confirm: "Are you sure?" } %>
+                <%# <td><%= link_to 'Delete', course_topic_path(course_id: @course, id: topic), method: :delete, data: { confirm: "Are you sure?" }, remote: true, :class => 'delete_topic', id: topic.id %> 
+                <td>  <button id="<%=topic.id%>", onclick="delete_topic(this)">Delete</button> </td>
             </tr>
         <% end %>
     </tbody>
@@ -40,3 +41,19 @@
 <%= link_to 'Back', courses_path %> | 
 <%= link_to 'Edit', edit_course_path(@course.id) %> | 
 <%= link_to 'Delete', course_path(@course.id), method: :delete, data: { confirm: "Are you sure?" } %>
+
+<script>
+    function delete_topic(e) {
+        var url = "/courses/" + <%=@course.id%> + "/topics/" + e.id
+        $.ajax({
+            url: url,
+            method: 'delete',
+            dataType: "json",
+            success: function(data) {
+                if (data.message == 'success') {
+                    document.getElementById(data.body.id).parentElement.parentElement.remove()
+                }
+            }
+        })
+    }
+</script>
