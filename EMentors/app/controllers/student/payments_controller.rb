@@ -2,13 +2,6 @@ module Student
     class PaymentsController < ::ApplicationController
         before_action :set_course_and_user_for_payment
         def payment_successful
-            # byebug
-            # Stripe.api_key = 'sk_test_51MrcJdSAKcsNysZVeB965HkUl7csitC4W8vr0SmLccl3BBxHitN9VZTB59ddmek9DulvHgGpBwUr25lhGh67JvXv00O3Iqn8AQ'
-
-            # @order = Stripe::Checkout::Session.retrieve(
-            # # 'cs_test_a1fefTeacaWJo9dG9dx3BR52OqBmhWBaUXgKzToVdKnFsYRPns4VZRmLGC',
-            #     @session.id,
-            # )
             if @payment.save
                 @payment.complete!
                 if @payment.status == 'success'
