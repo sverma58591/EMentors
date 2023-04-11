@@ -63,4 +63,6 @@ gem 'awesome_print'
 gem 'stripe'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'cancancan'
+gem 'sidekiq', '6.5.8'
 gem 'discard', '~> 1.2'
+
