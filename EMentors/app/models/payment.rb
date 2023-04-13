@@ -1,6 +1,5 @@
 class Payment < ApplicationRecord
   include AASM
-  
   belongs_to :user
   belongs_to :course
   aasm column: :status, whiny_transitions: false do

@@ -1,14 +1,20 @@
-<h1>My courses list:</h1>
-<% @courses.each do |course| %>
-    <div>
-        <strong>Course Name: </strong><%= course.course_name %><br>
-        <strong>Course Description: </strong><%= course.course_description %><br>
-        <strong>Course Duration: </strong><%= course.course_duration %> <br>
-        <strong>Course Price: </strong><%= course.course_price %><br>
+<div class="d-flex align-items-center justify-content-center">
+    <h4>My Courses </h4>
+</div>
+<ul>
+<div class="row row-cols-1 row-cols-md-3 g-4" >
+<% @courses.each do |course|%>
+     <div class="col" style="width: 25%;">
+    <div class="card" style="min-height: 100%;">
+     <div class="card-body" style="background-color: #66A5AD  ; color: #c4dfe6;">
+     <div ><h5 class="card-title" style="color: #003b46;"><%= course.course_name %> </h5></div>
+     <p class="card-text">
+        <strong style="color: #003b46;">Description: </strong><%= course.course_description%>
+    </p>
     </div>
-    <%= link_to 'Show Topics',  subscription_path(course)%>
-    <br>
-    <br>
+    <%= link_to 'Jump to course', subscription_path(course), {:style=>'background-color:#003b46; color: #ffffff;', :class => "btn "} %> 
+    </div>
+    </div>
 <% end %>
-
-<%= link_to 'Back', dashboard_index_path %> 
+</div>
+</ul>

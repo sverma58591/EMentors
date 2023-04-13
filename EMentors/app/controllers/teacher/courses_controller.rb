@@ -26,6 +26,7 @@ module Teacher
       def edit;end
     
       def update
+        # byebug
         if @course.update(course_params)
           redirect_to @course
         else 

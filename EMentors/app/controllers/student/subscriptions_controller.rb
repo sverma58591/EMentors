@@ -5,8 +5,6 @@ module Student
             @courses = Course.where(id: current_user.purchases.pluck(:course_id))
         end
 
-        def show;end
-
         private
         def check_subscriber?
             @course = Course.find_by(id: params[:id])

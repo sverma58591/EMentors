@@ -29,6 +29,7 @@ module Teacher
         end
 
         def destroy
+            # byebug
             @topic = @course.topics.find(params[:id])
             if @topic.discard
                 respond_to do |format|

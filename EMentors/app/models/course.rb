@@ -6,8 +6,8 @@ class Course < ApplicationRecord
   has_many :purchases, dependent: :destroy
   has_many :topics, dependent: :destroy
   has_many :payments
-  validates :course_name, presence: true, uniqueness: true
-  validates :course_duration, :course_price, presence: true
+  validates :course_name, presence: true#, uniqueness: true
+  validates :course_description, :course_duration, :course_price, presence: true
   
   private
   def ensure_teacher?

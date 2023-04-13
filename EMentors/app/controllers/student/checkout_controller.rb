@@ -3,6 +3,7 @@ module Student
         before_action :set_course_and_user_for_payment, only: [:create]
         before_action :set_payment, only: %i[success cancel]
         def create
+            # byebug
             @session = Stripe::Checkout::Session.create({
                 payment_method_types: ['card'],
                 customer_email: current_user.email,

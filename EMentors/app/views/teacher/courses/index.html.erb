@@ -1,20 +1,24 @@
-<div class="d-flex align-items-center justify-content-center">
+<div class="d-flex align-items-center justify-content-center" >
     <h1>Hello <%= current_user.first_name %>, Welcome to EMentors</h1>
 </div>
+<ul>
+<%= link_to 'Create a new course', new_course_path,  class:"btn btn-success" %> 
 <h3>List of all your courses:</h3>
+<div class="row row-cols-1 row-cols-md-3 g-4" >
 <% @courses.each do |course|%>
-    <p>
-        <strong>Course Name:</strong>
-        <%= course.course_name %>
+     <div class="col" style="width: 25%;">
+    <div class="card" style="min-height: 100%;">
+     <div class="card-body" style="background-color: #66A5AD  ; color: #c4dfe6;">
+     <div ><h5 class="card-title" style="color: #003b46;"><%= course.course_name %> </h5></div>
+     <p class="card-text"><strong>Description:</strong>
+        <%= course.course_description %><br/>
+        <strong>Duration: </strong><%= course.course_duration %><br>
+        <strong>Price: </strong><%= course.course_price %></p>
     </p>
-
-    <p>
-        <strong>Course Description:</strong>
-        <%= course.course_description %>
-    </p>
-    <p>
-        <%= link_to 'View Details', course_path(course.id) %> 
-    </p>
+    </div>
+    <%= link_to 'View Details', course_path(course.id), {:style=>'background-color:#003b46; color: #ffffff;', :class => "btn "} %> 
+    </div>
+    </div>
 <% end %>
-
-<%= link_to 'Create a new course', new_course_path %> 
+</div>
+</ul>

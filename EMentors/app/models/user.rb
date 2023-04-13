@@ -9,20 +9,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
- # scope :teacher, -> { where(role: 1) }
   def is_student?
     role === 'student'
   end
-
+  
   def is_teacher?
     role === 'teacher'
   end
-
+  
   def self.teachers
     where(role: :teacher)
   end
-
+  
   def self.students
     where(role: :student)
   end
 end
+
+# scope :teacher, -> { where(role: 1) }
