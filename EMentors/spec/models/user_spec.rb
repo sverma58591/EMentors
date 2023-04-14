@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
     describe "#is_student?" do
       it "returns true if the user is a student" do
         user.role = "student"
-        expect(user.is_student?).to be true
+        expect(user.is_student?).to be_truthy
       end
       it "returns false if the user is a teacher" do
         user.role = "teacher"

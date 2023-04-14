@@ -69,4 +69,5 @@ gem 'sidekiq', '6.5.8'
 gem 'discard', '~> 1.2'
 gem 'faker'
 gem 'shoulda-matchers'
+gem 'rails-controller-testing'
 

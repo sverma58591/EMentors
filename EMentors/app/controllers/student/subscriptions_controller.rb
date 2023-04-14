@@ -6,6 +6,7 @@ module Student
         end
 
         private
+        
         def check_subscriber?
             @course = Course.find_by(id: params[:id])
             

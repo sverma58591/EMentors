@@ -2,8 +2,8 @@ module Student
     class CheckoutController < ::ApplicationController
         before_action :set_course_and_user_for_payment, only: [:create]
         before_action :set_payment, only: %i[success cancel]
+        
         def create
-            # byebug
             @session = Stripe::Checkout::Session.create({
                 payment_method_types: ['card'],
                 customer_email: current_user.email,
@@ -42,6 +42,7 @@ module Student
         end
 
         private
+
         def set_course_and_user_for_payment
             @course = Course.find(params[:id])
             @payment = @course.payments.new(user_id: current_user.id) 

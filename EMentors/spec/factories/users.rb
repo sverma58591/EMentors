@@ -6,7 +6,6 @@ FactoryBot.define do
     password { "password" }
     password_confirmation { "password" }
     role { :student }
-
     trait :teacher do
       role { :teacher }
     end
