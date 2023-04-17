@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Teacher::CoursesController, type: :controller do
     let(:user) { create(:user, :teacher) }
-    let(:course) { create(:course) }
     
     before do
         user.confirm
         sign_in user
     end
+    let(:course) { create(:course, user: user) }
     
     describe "GET #index" do
         it "assigns the user's courses to @courses" do
@@ -24,10 +24,9 @@ RSpec.describe Teacher::CoursesController, type: :controller do
     describe "GET #show" do
         it "assigns the requested course to @course" do
             get :show, params: { id: course.id }
-            expect(assigns(:course)).to eq(@course)
+            expect(assigns(:course)).to eq(course)
         end
         
-        it {debugger}
         it "renders the show template" do
             get :show, params: { id: course.id }
             expect(response).to render_template(:show)
