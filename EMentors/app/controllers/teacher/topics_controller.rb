@@ -1,6 +1,7 @@
 module Teacher
     class TopicsController < BaseController
         before_action :set_course, only: %i[new create edit update destroy]
+        before_action :check_if_subscribed!, only: [:destroy]
         def new
             @topic = @course.topics.new
         end
@@ -28,8 +29,9 @@ module Teacher
         end
 
         def destroy
+            # byebug
             @topic = @course.topics.find(params[:id])
-            if @topic.discard
+            if @topic.discard   
                 respond_to do |format|
                     format.html { redirect_to course_path(@course) }
                     format.json { render :json => {:message => "success", :body => @topic} }
@@ -50,6 +52,12 @@ module Teacher
         
         def set_course
             @course = Course.find(params[:course_id])
+        end
+
+        def check_if_subscribed!
+            if @course.purchases.count > 0
+                return redirect_to request.env["HTTP_REFERER"], notice: "Cannot perform action!"
+            end
         end
     end
 end
