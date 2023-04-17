@@ -1,14 +1,24 @@
-<div class="d-flex align-items-center justify-content-center">
-    <h1>Hello <%= current_user.first_name %>, Welcome to the EMentors</h1>
+<div class="d-flex align-items-center justify-content-center" >
+    <h1>Hello <%= current_user.first_name %>, Welcome to EMentors</h1>
 </div>
-<% @courses.each do |course| %>
-    <p>
-        <strong>Course Name: </strong>
-        <%=course.course_name%><br>
-        <strong>Course Description: </strong>
-        <%=course.course_description%><br>
-        <%# <%= button_to 'Buy Course', purchases_path(course_id: course.id), method: :post %> 
-        <%# <td><%= button_to "Buy Now!", checkout_create_path, params: {id: course.id}, remote: true %>
-        <%= link_to 'View Details', dashboard_path(course) %>
+<ul>
+<div class="row row-cols-1 row-cols-md-3 g-4" >
+<% @courses.each do |course|%>
+    <div class="col" style="width: 25%;">
+    <div class="card" style="min-height: 100%;">
+     <div class="card-body" style="background-color: #66A5AD  ; color: #c4dfe6;">
+     <div ><h5 class="d-flex align-items-center justify-content-center card-title" style="color: #003b46;"><%= course.course_name %> </h5></div>
+     <p class="card-text">
+        <strong style="color: #003b46;">Description: </strong><%= course.course_description %> <br>
+        <strong style="color: #003b46;">Duration: </strong><%= course.course_duration %><br>
+        <strong style="color: #003b46;">Price: </strong><strong>Rs.</strong><%= course.course_price %><br>
+        <strong style="color: #003b46;">Instructor: </strong><%= course.user.first_name %> <%= course.user.last_name %><br>
+        <strong style="color: #003b46;">Mail ID: </strong><%= course.user.email%> 
     </p>
+    </div>
+    <%= button_to "Buy Now!", checkout_create_path, params: {id: course.id}, remote: true, style: 'background-color:#003b46; color: #ffffff; width: 100%;', class: "btn " %>
+    </div>
+    </div>
 <% end %>
+</div>
+</ul>

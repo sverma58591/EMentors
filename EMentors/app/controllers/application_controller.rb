@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
     rescue_from ::ActiveRecord::RecordNotFound, with: :record_not_found
     
     protected
+    
     def is_student?
         redirect_to (request.env["HTTP_REFERER"] || courses_path), alert:"You are unauthorised for this!" unless current_user&.is_student?
     end
@@ -26,6 +27,7 @@ class ApplicationController < ActionController::Base
     end
 
     private
+
     def record_not_found
         redirect_to courses_path , alert: "Record not found!"
     end

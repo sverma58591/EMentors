@@ -15,7 +15,6 @@ module Teacher
         end
 
         def edit
-            # byebug
             @topic = @course.topics.find(params[:id])
         end
 
@@ -44,6 +43,7 @@ module Teacher
         end
         
         private
+
         def topics_params
             params.require(:topic).permit(:topic_name, :topic_description, :post_video)
         end

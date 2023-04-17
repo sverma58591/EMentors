@@ -8,6 +8,7 @@ module Student
         def show;end
         
         private
+        
         def course_id_valid?
             @course = Course.find_by(id: params[:id])
             if @course.nil?
