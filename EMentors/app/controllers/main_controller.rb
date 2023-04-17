@@ -1,5 +1,3 @@
 class MainController < ApplicationController
-  def index
-    @courses = Course.all
-  end
+  def index;end
 end

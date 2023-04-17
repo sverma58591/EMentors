@@ -14,7 +14,7 @@
                         <td><%= topic.topic_name %> </td>
                         <td><%= topic.topic_description %> </td>
                         <% if topic.post_video.present? %>
-                            <td><%= video_tag url_for(topic.post_video), controls:true, controlsList: "nodownload" %></td>
+                            <td><%= video_tag url_for(topic.post_video), controls:true, controlsList: "nodownload"%></td>
                         <% end %>
                     </tr>
                 <% end %>
@@ -24,50 +24,3 @@
 <div class = "d-flex justify-content-center">
     <h1> Latest Bids </h1>
 </div>
-
-<%# <% if current_user.id !=  Product.find_by_id(params[:product_id]).user_id && show_helper(params[:product_id]) == true %> %>
-  <%# <a class="btn btn-primary" href="<%= new_product_bid_path(product_id: params[:product_id]) %>" role="button">Make a Bid</a> %>
-<%# <% end %> %>
-
-<%# <% index_helper %> %>
-<%# ################################################################################################################ %>
-<table class="table table-bordered">
-  <thead>
-    <tr>
-    <th>Product Name</th>
-    <th>Latest Price</th>
-    <%# <% if show_helper(params[:product_id].to_i) == true %> %>
-      <th>Ending Time</th>
-    <%# <% end %> %>
-    <th>Quantity</th>
-    <%# <% if index_check(@bids) == true %>  %>
-      <th>Accept Bid</th>
-    <%# <% end %>    %>
-    <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%# <% @bids.each do |bid| %> %>
-      <tr>
-        <%# <td><%= bid.product.name %></td> %>
-        <%# <td><%= bid.current_bid %></td> %>
-        <%# <% if show_helper(params[:product_id].to_i) == true %> %>
-          <%# <td><%= seconds_to_hms((bid.created_at + 172800) - Time.now)%></td> %>
-        <%# <% end %> %>
-        <%# <td><%= bid.product.quantity %></td> %>
-        <%# <% if index_check(@bids) == true %> %>
-          <td>
-            <%# <%= index_accept(bid) %> %>
-          </td>
-        <%# <% end %> %>
-        <%# <% if bid_accept_check(bid) == true %> %>
-          <td>Accepted</td>
-        <%# <% elsif bid_reject_check(bid) == true %> %>
-          <td>Not Accepted</td>
-        <%# <% else %> %>
-          <td>Open for Auction</td>
-        <%# <% end %> %>
-      </tr>
-    <%# <%end%> %>
-  </tbody>
-</table>
