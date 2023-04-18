@@ -1,5 +1,6 @@
 require 'rails_helper'
 RSpec.describe Course, type: :model do
+
     subject { create(:course) }
     
     it { is_expected.to have_many(:purchases).dependent(:destroy) }
