@@ -29,7 +29,6 @@ module Teacher
         end
 
         def destroy
-            # byebug
             @topic = @course.topics.find(params[:id])
             if @topic.discard   
                 respond_to do |format|
@@ -38,7 +37,7 @@ module Teacher
                 end
             else
                 respond_to do |format|
-                    format.html { redirect_to request.env["HTTP_REFERER"], notice: "Cannot perform action!"  }
+                    format.html { redirect_to request.env["HTTP_REFERER"], notice: "Cannot perform action!" }
                     format.json { render :json => {:message => "false"} }
                 end 
             end

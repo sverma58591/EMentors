@@ -12,20 +12,23 @@ module Student
         end
 
         def success
-            session_with_expand = Stripe::Checkout::Session.retrieve({ id: params[:session_id], expand: ["line_items"]})
-            email_id = session_with_expand.customer_details.email
-            user = User.find_by(email: email_id)
+            session_id = params[:session_id]
+            expand = ["line_items"]
+            byebug
+            session_with_expand = CheckoutRetrieve.new(session_id, expand).call
+            # email_id = session_with_expand.customer_details.email
+            # user = User.find_by(email: email_id)
             @course_name = session_with_expand.line_items.data[0].description
             @course = Course.find_by(course_name: @course_name)
-            if @payment.course == @course and @payment.user = @user
-                @payment.complete!
-                @purchase = @course.purchases.new
-                @purchase.user_id = @user.id
-                @purchase.save
-                GenerateMailJob.perform_later(@purchase)
-            else
-                #Refund process
-            end
+            # if @payment.course == @course and @payment.user == user
+            #     @payment.complete!
+            #     @purchase = @course.purchases.new
+            #     @purchase.user_id = user.id
+            #     @purchase.save
+            #     GenerateMailJob.perform_later(@purchase)
+            # else
+            #     #Refund process
+            # end
         end
         
         def cancel
