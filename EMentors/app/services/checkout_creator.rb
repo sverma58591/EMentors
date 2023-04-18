@@ -4,22 +4,13 @@ class CheckoutCreator
         create_checkout
     end
 
-    # def call_retrieve
-    #     retrieve_checkout
-    # end
     def initialize(current_user, course, checkout_success_url, checkout_cancel_url, payment)
         @current_user = current_user
         @course = course
         @checkout_success_url = checkout_success_url
         @checkout_cancel_url = checkout_cancel_url
         @payment = payment
-        # @session_id = session_id
-        # @expand = expand
     end
-    
-    # private
-
-
 
     def create_checkout
         return (Stripe::Checkout::Session.create({
@@ -34,9 +25,4 @@ class CheckoutCreator
             cancel_url: checkout_cancel_url + "?session_id={CHECKOUT_SESSION_ID}" + "&payment_id=" + payment.id.to_s
         }))
     end
-
-    # def retrieve_checkout
-    #     return (Stripe::Checkout::Session.retrieve({ id: session_id, expand: expand}))
-    #     return (Stripe::Checkout::Session.retrieve({ id: params[:session_id], expand: ["line_items"]}))
-    # end
 end
