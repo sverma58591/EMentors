@@ -15,6 +15,7 @@ module Student
             session_id = params[:session_id]
             expand = ["line_items"]
             session_with_expand = CheckoutRetrieve.new(session_id, expand, @payment).call
+            # byebug
             @course_name = session_with_expand.line_items.data[0].description
             @course = Course.find_by(course_name: @course_name)
         end
@@ -34,5 +35,11 @@ module Student
         def set_payment
             @payment = Payment.find_by(id: params[:payment_id])
         end
+
+        # def ask_refund
+        #     Stripe::Refund.create({
+        #         payment_intent: ,
+        #     })
+        # end
     end    
 end    

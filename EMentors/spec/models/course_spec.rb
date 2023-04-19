@@ -3,6 +3,7 @@ RSpec.describe Course, type: :model do
 
     subject { create(:course) }
     
+    it { is_expected.to belong_to(:user)}
     it { is_expected.to have_many(:purchases).dependent(:destroy) }
     it { is_expected.to have_many(:topics).dependent(:destroy) }
     it { is_expected.to have_many(:payments) }

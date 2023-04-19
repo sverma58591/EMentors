@@ -7,6 +7,7 @@ RSpec.describe Teacher::CoursesController, type: :controller do
         user.confirm
         sign_in user
     end
+
     let(:course) { create(:course, user: user) }
     
     describe "GET #index" do
@@ -30,6 +31,26 @@ RSpec.describe Teacher::CoursesController, type: :controller do
         it "renders the show template" do
             get :show, params: { id: course.id }
             expect(response).to render_template(:show)
+        end
+    end
+
+    describe "GET #edit" do
+        it "assigns the requested course to @course" do
+          get :edit, params: { id: course.id }
+          expect(assigns(:course)).to eq(course)
+        end
+        
+        it "renders the edit template" do
+          get :edit, params: { id: course.id }
+          expect(response).to render_template(:edit)
+        end
+    end
+      
+    describe "PATCH #update" do
+        context "with valid parameters" do
+            let(:valid_params) do
+                { course: { course_name: "Updated Course", course_description: "This is an updated course.", course_duration: 10, course_price: 200 } }
+            end
         end
     end
 end

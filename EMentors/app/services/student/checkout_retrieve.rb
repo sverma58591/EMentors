@@ -24,7 +24,13 @@ module Student
                 @purchase.save
                 GenerateMailJob.perform_later(@purchase)
             else
-                #Refund process
+                session_refund = (Stripe::Refund.create({
+                    payment_intent: session_with_expand.payment_intent,
+                }))
+
+                Stripe::Refund.retrieve(
+                    session_refund.id,
+                )
             end
 
             return session_with_expand
