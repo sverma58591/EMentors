@@ -9,6 +9,7 @@ RSpec.describe Teacher::CoursesController, type: :controller do
     end
 
     let(:course) { create(:course, user: user) }
+    let(:course2) { create(:course, user: user) }
     
     describe "GET #index" do
         it "assigns the user's courses to @courses" do
@@ -47,10 +48,33 @@ RSpec.describe Teacher::CoursesController, type: :controller do
     end
       
     describe "PATCH #update" do
-        context "with valid parameters" do
-            let(:valid_params) do
-                { course: { course_name: "Updated Course", course_description: "This is an updated course.", course_duration: 10, course_price: 200 } }
-            end
+        it "with valid parameters" do
+            patch :update, params: { id: course.id, course: {course_name: 'updated course name' } }
+            expect(assigns(:course).course_name).to eq('updated course name')
+            expect(response).to redirect_to(course_path)
+        end
+
+        
+    end
+
+    describe "CREATE #create" do
+        it "creates a new course" do  
+            # debugger
+            expect {
+                post :create, params: { course: {course_name: 'updated course name', course_description: 'dasfaf', course_price: 51, course_duration: '1 month' } }
+            }.to change(Course, :count).by(1)
+            # expect(response).to redirect_to(course_path)
+        end
+    end
+
+    describe "DELETE #destroy" do
+        it "delete existing course" do 
+            # delete :destroy, params:{ id: course.id }
+            # expect(response).to redirect_to(courses_path)
+            # expect(Course.discarded.count).to eq(1)
+            expect {
+                delete :destroy, params: {id: course.id}
+            }.to change(Course.kept, :count).by(-1)
         end
     end
 end
