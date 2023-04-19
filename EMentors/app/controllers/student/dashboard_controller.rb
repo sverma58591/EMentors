@@ -2,7 +2,7 @@ module Student
     class DashboardController < BaseController
         before_action :course_id_valid?, only: [:show]
         def index
-            @courses = Course.where.not(id: current_user.purchases.pluck(:course_id))
+            @courses = Course.where.not(id: current_user.purchases.pluck(:course_id)).kept
         end
 
         def show;end
