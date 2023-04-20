@@ -1,14 +1,15 @@
 <%= link_to 'View Subscribers', subscribers_path(course_id: @course), class:"btn btn-success" %>
-
-
-
-<%= link_to 'Create Topic', new_course_topic_path(@course), class:"btn btn-secondary"%><br>
-<table>
+<%= link_to 'Create Topic', new_course_topic_path(@course), class:"btn btn-secondary"%><br><br>
+<table class="table table-success table-striped">
     <thead>
         <tr>
             <th> Topic Name </th>
             <th> Topic Description </th>
-            <th colspan= "2">Edit/Delete</th>
+            <th> Video Lecture</th>
+            <th> Edit Link</th>
+            <% if @course.purchases.count == 0 %>
+                <th> Delete Link </th>
+            <% end %>
         </tr>
     </thead>
     <tbody>
@@ -17,10 +18,12 @@
                 <td><%= topic.topic_name %> </td>
                 <td><%= topic.topic_description %> </td>
                 <% if topic.post_video.present? %>
-                    <td><%= video_tag url_for(topic.post_video), controls: true %> </td>
+                    <td><%= video_tag url_for(topic.post_video), controls: true, width: 200, height: 100 %> </td>
                 <% end %>
                 <td><%= link_to 'Edit Topic', edit_course_topic_path(course_id: @course, id: topic), class:"btn btn-info"%> 
-                <td>  <button id="<%=topic.id%>", onclick="delete_topic(this)", class="btn btn-danger">Delete Topic</button> </td>
+                <% if @course.purchases.count == 0 %>
+                    <td>  <button id="<%=topic.id%>", onclick="delete_topic(this)", class="btn btn-danger">Delete Topic</button> </td>
+                <% end %>
             </tr>
         <% end %>
     </tbody>

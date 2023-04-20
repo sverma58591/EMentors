@@ -5,9 +5,9 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { "password" }
     password_confirmation { "password" }
-    role { :student }
-    trait :teacher do
-      role { :teacher }
+    role { :teacher }
+    trait :student do
+      role { :student }
     end
   end
 end

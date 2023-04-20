@@ -12,6 +12,6 @@ class Course < ApplicationRecord
   private
 
   def ensure_teacher?
-    errors.add(:user_id, "Must be a teacher to create a course") unless user.teacher?
+    errors.add(:user_id, "Must be a teacher to create a course") unless user&.teacher?
   end 
 end
