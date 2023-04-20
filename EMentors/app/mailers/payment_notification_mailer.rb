@@ -19,7 +19,5 @@ class PaymentNotificationMailer < ApplicationMailer
     
     mail to: @teacher_email, subject: "You got a subscriber"
   end
-
-  def delete_notification
-  end
+  
 end

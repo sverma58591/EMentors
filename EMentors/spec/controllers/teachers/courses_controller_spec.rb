@@ -7,6 +7,7 @@ RSpec.describe Teacher::CoursesController, type: :controller do
         user.confirm
         sign_in user
     end
+    
     let(:course) { create(:course, user: user) }
     
     describe "GET #index" do
