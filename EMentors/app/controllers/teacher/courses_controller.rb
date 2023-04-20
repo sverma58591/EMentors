@@ -16,7 +16,7 @@ module Teacher
         @course = current_user.courses.new(course_params)
     
         if @course.save
-          redirect_to @course
+          redirect_to course_path(@course)
         else 
           render :new
         end
@@ -33,9 +33,7 @@ module Teacher
       end
     
       def destroy
-        byebug
         if @course.discard
-          byebug
           redirect_to courses_path
         else
           redirect_to request.env["HTTP_REFERER"], notice: "Cannot perform action!"
@@ -55,7 +53,6 @@ module Teacher
       end
 
       def set_course
-        debugger
         @course = current_user.courses.find(params[:id])
       end
     end

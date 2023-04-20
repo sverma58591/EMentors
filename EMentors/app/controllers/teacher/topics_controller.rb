@@ -54,7 +54,6 @@ module Teacher
         end
 
         def check_if_subscribed!
-            # byebug
             if @course.purchases.count > 0
                 return redirect_to request.env["HTTP_REFERER"], notice: "Cannot perform action!"
             end

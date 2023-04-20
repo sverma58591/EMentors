@@ -1,4 +1,4 @@
-const stripe = Stripe("<%= Rails.configuration.stripe[:publishable_key] %>");
+const stripe = Stripe("<%= Rails.application.credentials[:stripe][:PUBLISHABLE_KEY] %>");
 const checkoutButton = document.getElementById('checkout-button');
 
 stripe.redirectToCheckout({

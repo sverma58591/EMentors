@@ -10,7 +10,6 @@ RSpec.describe Teacher::CoursesController, type: :controller do
     
 
     let(:course) { create(:course, user: user) }
-    let(:course2) { create(:course, user: user) }
     
     describe "GET #index" do
         it "assigns the user's courses to @courses" do
@@ -47,35 +46,41 @@ RSpec.describe Teacher::CoursesController, type: :controller do
           expect(response).to render_template(:edit)
         end
     end
-      
+
     describe "PATCH #update" do
         it "with valid parameters" do
             patch :update, params: { id: course.id, course: {course_name: 'updated course name' } }
             expect(assigns(:course).course_name).to eq('updated course name')
             expect(response).to redirect_to(course_path)
         end
-
-        
     end
-
+    
+    describe "GET #new" do
+        it "renders the new template" do
+          get :new
+          expect(response).to render_template(:new)
+        end
+    end
+      
     describe "CREATE #create" do
         it "creates a new course" do  
-            # debugger
             expect {
-                post :create, params: { course: {course_name: 'updated course name', course_description: 'dasfaf', course_price: 51, course_duration: '1 month' } }
+                post :create, params: { course: {course_name: 'updated course name', course_description: 'Updated Description', course_price: 51, course_duration: '1 month' } }
             }.to change(Course, :count).by(1)
-            # expect(response).to redirect_to(course_path)
+            expect(response).to redirect_to(course_path(Course.last))
         end
     end
 
     describe "DELETE #destroy" do
         it "delete existing course" do 
-            # delete :destroy, params:{ id: course.id }
-            # expect(response).to redirect_to(courses_path)
-            # expect(Course.discarded.count).to eq(1)
-            expect {
-                delete :destroy, params: {id: course.id}
-            }.to change(Course.kept, :count).by(-1)
+            delete :destroy, params:{ id: course.id }
+            expect(response).to redirect_to(courses_path)
+            expect(Course.discarded.count).to eq(1)
+        end
+
+        it "failed to delete" do
+            delete :destroy, params:{ id: 27856 }
+            expect(Course.discarded.count).to eq(0)
         end
     end
 end
