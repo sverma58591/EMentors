@@ -33,8 +33,13 @@ module Teacher
       end
     
       def destroy
-        @course.discard
-        redirect_to courses_path
+        byebug
+        if @course.discard
+          byebug
+          redirect_to courses_path
+        else
+          redirect_to request.env["HTTP_REFERER"], notice: "Cannot perform action!"
+        end
       end
 
       private
@@ -50,6 +55,7 @@ module Teacher
       end
 
       def set_course
+        debugger
         @course = current_user.courses.find(params[:id])
       end
     end

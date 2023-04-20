@@ -1,22 +1,24 @@
-<%= form_with model: [@course, @topic] do |form| %>
-  <% if @topic.errors.any? %>
-    <% @topic.errors.full_messages.each do |message| %>
-      <p><%= message %></p>
+<div class="d-flex align-items-center justify-content-center">
+  <%= form_with model: [@course, @topic] do |form| %>
+    <% if @topic.errors.any? %>
+      <% @topic.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
     <% end %>
+    <p>
+      <%= form.label :topic_name %><br>
+      <%= form.text_field :topic_name %>
+    </p>
+    <p>
+      <%= form.label :topic_description %><br>
+      <%= form.text_field :topic_description %>
+    </p>
+    <p>
+      <%= form.label :post_video %><br>
+      <%= form.file_field :post_video %>
+    </p>
+    <%# <p> %>
+      <%= form.submit :Submit, {:style=>'width: 256px', :class => "btn btn-success"}%>
+    <%# </p> %>
   <% end %>
-  <p>
-    <%= form.label :topic_name %><br>
-    <%= form.text_field :topic_name %>
-  </p>
-  <p>
-    <%= form.label :topic_description %><br>
-    <%= form.text_field :topic_description %>
-  </p>
-  <p>
-    <%= form.label :post_video %>
-    <%= form.file_field :post_video %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+</div>
