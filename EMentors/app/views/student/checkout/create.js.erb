@@ -1,0 +1,6 @@
+const stripe = Stripe("<%= Rails.application.credentials[:stripe][:PUBLISHABLE_KEY] %>");
+const checkoutButton = document.getElementById('checkout-button');
+
+stripe.redirectToCheckout({
+    sessionId: '<%= @session.id %>'
+  })

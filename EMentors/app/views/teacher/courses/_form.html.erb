@@ -1,0 +1,27 @@
+<div class="d-flex align-items-center justify-content-center">
+    <%= form_with model: course do |form|%>
+        <div>
+            <strong><%= form.label :course_name %> <br></strong>
+            <%= form.text_field :course_name %> <br>
+        </div>
+
+        <div>
+            <strong><%= form.label :course_description %> <br></strong>
+            <%= form.text_field :course_description %> <br>
+        </div>
+
+        <div>
+            <strong><%= form.label :course_duration %> <br></strong>
+            <%= form.text_field :course_duration %> <br>
+        </div>
+
+        <div>
+            <strong><%= form.label :course_price %> <br></strong>
+            <%= form.number_field :course_price %> <br>
+        </div>
+
+        <div>
+            <%= form.submit :Submit, {:style=>'width: 256px', :class => "btn btn-success"}%> <br>
+        </div>
+    <% end %>
+</div>
